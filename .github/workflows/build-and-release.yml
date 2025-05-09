@@ -26,12 +26,13 @@ jobs:
         run: |
           pyinstaller --onefile --noconsole --name fast_folder_delete_gui fast_folder_delete_gui.py
 
-      - name: Set up GitHub CLI
-        uses: cli/cli-action@v2
+      - name: Install GitHub CLI
+        run: choco install gh -y
 
       - name: Create Tag and Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG=autobuild-${{ github.sha }}
+          echo $GITHUB_TOKEN | gh auth login --with-token
           gh release create "$TAG" dist/fast_folder_delete_gui.exe --title "Automated Build $TAG" --notes "Automated build for commit ${{ github.sha }}" --latest --repo ${{ github.repository }} --target ${{ github.sha }} 
