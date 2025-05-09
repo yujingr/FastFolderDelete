@@ -1,5 +1,7 @@
 # FastFolderDelete
 
+![Fast Folder Delete Screenshot](screenshot.png)
+
 A super-fast Windows folder deletion tool with a drag-and-drop GUI, leveraging parallel file operations for maximum speed. Ideal for deleting large folders with thousands of files and subfolders.
 
 ## Features
