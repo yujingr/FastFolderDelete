@@ -1,10 +1,8 @@
-name: Build and Release EXE
+name: Build, Tag, and Release EXE
 
 on:
   push:
     branches: [ main ]
-  release:
-    types: [created]
 
 jobs:
   build:
@@ -28,12 +26,12 @@ jobs:
         run: |
           pyinstaller --onefile --noconsole --name fast_folder_delete_gui fast_folder_delete_gui.py
 
-      # This will upload the EXE as an artifact for every build (push to main or release)
-      - name: Upload EXE artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: fast_folder_delete_gui-exe
-          path: dist/fast_folder_delete_gui.exe
+      - name: Set up GitHub CLI
+        uses: cli/cli-action@v2
 
-# The EXE will be available for download from the Actions run artifacts for every build.
-# If you want to also attach it to GitHub Releases, let me know! 
+      - name: Create Tag and Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG=autobuild-${{ github.sha }}
+          gh release create "$TAG" dist/fast_folder_delete_gui.exe --title "Automated Build $TAG" --notes "Automated build for commit ${{ github.sha }}" --latest --repo ${{ github.repository }} --target ${{ github.sha }} 
