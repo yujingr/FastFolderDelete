@@ -17,35 +17,33 @@ A super-fast Windows folder deletion tool with a drag-and-drop GUI, leveraging p
 - Windows OS (uses Windows-specific commands and paths)
 - [tkinterdnd2](https://pypi.org/project/tkinterdnd2/)
 
-## Installation
+## Installation & Usage
+
+### Easiest: Download the Precompiled Windows Executable
+
+1. Go to the [Releases section](https://github.com/yujingr/FastFolderDeleteForWindows/releases) of this repository.
+2. Download the latest `fast_folder_delete_gui.exe` from the latest release.
+3. Double-click `fast_folder_delete_gui.exe` to launch the app.
+4. Drag and drop a folder onto the window.
+5. Confirm deletion when prompted.
+6. Optionally, set the number of worker threads for parallel deletion (default: 64).
+
+> **Note:** You do not need Python or any dependencies to use the precompiled executable.
+
+### Advanced: Run from Python Source
 
 1. Clone this repository or download the files.
 2. Install dependencies:
    ```bash
    pip install tkinterdnd2
    ```
-
-## Usage
-
-### Option 1: Use the Precompiled Windows Executable
-
-A precompiled executable (`fast_folder_delete_gui.exe`) is available in the `output` folder. You do not need Python or any dependencies to use this version.
-
-1. Open the `output` folder.
-2. Double-click `fast_folder_delete_gui.exe` to launch the app.
-3. Drag and drop a folder onto the window.
-4. Confirm deletion when prompted.
-5. Optionally, set the number of worker threads for parallel deletion (default: 64).
-
-### Option 2: Run from Python Source
-
-1. Run the GUI:
+3. Run the GUI:
    ```bash
    python fast_folder_delete_gui.py
    ```
-2. Drag and drop a folder onto the window.
-3. Confirm deletion when prompted.
-4. Optionally, set the number of worker threads for parallel deletion (default: 64).
+4. Drag and drop a folder onto the window.
+5. Confirm deletion when prompted.
+6. Optionally, set the number of worker threads for parallel deletion (default: 64).
 
 ### Generate a Large Test Folder
 
