@@ -53,7 +53,7 @@ To create a large folder structure for testing:
 python generate_big_folder.py
 ```
 
-This will create a folder named `test_big_folder` with 1000 subfolders, each containing 9 files.
+This will create a folder named `test_big_folder` with 1000 subfolders, each containing 30 files.
 
 ## Notes
 
