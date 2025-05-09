@@ -28,26 +28,12 @@ jobs:
         run: |
           pyinstaller --onefile --noconsole --name fast_folder_delete_gui fast_folder_delete_gui.py
 
+      # This will upload the EXE as an artifact for every build (push to main or release)
       - name: Upload EXE artifact
         uses: actions/upload-artifact@v4
         with:
           name: fast_folder_delete_gui-exe
           path: dist/fast_folder_delete_gui.exe
 
-  release:
-    needs: build
-    runs-on: windows-latest
-    if: github.event_name == 'release'
-    steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: fast_folder_delete_gui-exe
-          path: .
-
-      - name: Upload EXE to Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: fast_folder_delete_gui.exe
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+# The EXE will be available for download from the Actions run artifacts for every build.
+# If you want to also attach it to GitHub Releases, let me know! 
