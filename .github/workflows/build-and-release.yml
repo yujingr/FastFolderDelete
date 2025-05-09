@@ -30,9 +30,10 @@ jobs:
         run: choco install gh -y
 
       - name: Create Tag and Release
+        shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TAG=autobuild-${{ github.sha }}
+          TAG=autobuild-${GITHUB_SHA}
           echo $GITHUB_TOKEN | gh auth login --with-token
-          gh release create "$TAG" dist/fast_folder_delete_gui.exe --title "Automated Build $TAG" --notes "Automated build for commit ${{ github.sha }}" --latest --repo ${{ github.repository }} --target ${{ github.sha }} 
+          gh release create "$TAG" dist/fast_folder_delete_gui.exe --title "Automated Build $TAG" --notes "Automated build for commit $GITHUB_SHA" --latest --repo $GITHUB_REPOSITORY --target $GITHUB_SHA 
