@@ -10,7 +10,7 @@ import concurrent.futures
 # Function to delete folder using Windows rd command for speed
 
 
-def parallel_delete_folder(folder_path, num_workers=256):
+def parallel_delete_folder(folder_path, num_workers=64):
     """Recursively delete a folder and its contents in parallel."""
     errors = []
 
@@ -53,7 +53,7 @@ def parallel_delete_folder(folder_path, num_workers=256):
     return True, f"Deleted: {folder_path}"
 
 
-def fast_delete_folder(folder_path, num_workers=256):
+def fast_delete_folder(folder_path, num_workers=64):
     try:
         return parallel_delete_folder(folder_path, num_workers=num_workers)
     except Exception as e:
@@ -79,7 +79,7 @@ class FastFolderDeleteApp(TkinterDnD.Tk):
         self.worker_label = tk.Label(
             self.worker_frame, text="Number of workers:", bg="#f8f8f8", fg="#333", font=("Segoe UI", 10))
         self.worker_label.pack(side=tk.LEFT)
-        self.worker_var = tk.StringVar(value="256")
+        self.worker_var = tk.StringVar(value="64")
         self.worker_entry = tk.Entry(
             self.worker_frame, textvariable=self.worker_var, width=6)
         self.worker_entry.pack(side=tk.LEFT, padx=5)
